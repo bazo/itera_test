@@ -1,0 +1,41 @@
+{
+	"name": "javascript-home-assignment",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"start": "env-cmd -f .env.local dev-scripts start",
+		"build": "dev-scripts build",
+		"serve": "serve build",
+		"test": "dev-scripts test",
+		"start-json-server": "json-server --no-cors --port 3001 --watch db.json"
+	},
+	"dependencies": {
+		"@bazo/fetch-client": "^1.0.0",
+		"@bazo/js-dev-scripts": "^0.0.23",
+		"env-cmd": "^10.1.0",
+		"ramda": "^0.27.1",
+		"react": "^17.0.1",
+		"react-dom": "^17.0.1",
+		"typescript": "^4.2.2"
+	},
+	"devDependencies": {
+		"@types/node": "^14.14.31",
+		"@types/ramda": "^0.27.38",
+		"@types/react": "^17.0.2",
+		"@types/react-dom": "^17.0.1",
+		"@types/react-redux": "^7.1.16",
+		"@typescript-eslint/eslint-plugin": "^4.16.1",
+		"@typescript-eslint/parser": "^4.16.1",
+		"eslint": "^7.21.0",
+		"eslint-config-prettier": "^8.1.0",
+		"eslint-plugin-import": "^2.22.1",
+		"eslint-plugin-jest": "^24.1.5",
+		"eslint-plugin-prettier": "^3.3.1",
+		"eslint-plugin-react": "^7.22.0",
+		"eslint-plugin-simple-import-sort": "^7.0.0",
+		"husky": "^5.1.3",
+		"json-server": "^0.16.3",
+		"lint-staged": "^10.5.4",
+		"prettier": "^2.2.1"
+	}
+}
