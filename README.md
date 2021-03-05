@@ -27,19 +27,19 @@ You are expected to develop these steps:
 
 Other remarks:
 
-- You can add/remove dependencies that you are familiar with and will "do the job".
-    - Using state management library like Redux or Mobx is not required, but welcome. Using pure React is OK.
-    - Using library for fetching data from backend like Axios is okay as well as using `fetch` API
-- Unit tests are expected, but 100% coverage is not necessary. You need to prove ability to write frontend tests.
-- "Production-like" code quality is expected. Application should not throw any errors or warnings in console.
-- NB: Pagination and sorting is out of scope for this assignment.
-- Usage of best-practices is highly anticipated
+-   You can add/remove dependencies that you are familiar with and will "do the job".
+    -   Using state management library like Redux or Mobx is not required, but welcome. Using pure React is OK.
+    -   Using library for fetching data from backend like Axios is okay as well as using `fetch` API
+-   Unit tests are expected, but 100% coverage is not necessary. You need to prove ability to write frontend tests.
+-   "Production-like" code quality is expected. Application should not throw any errors or warnings in console.
+-   NB: Pagination and sorting is out of scope for this assignment.
+-   Usage of best-practices is highly anticipated
 
 Assignment should be done in 2-4 hours, depending on seniority. Compressed archived containing **source code only** is then to be sent to Itera HR.
 
-# `create-react-app` documentation
+# `@bazo/js-dev-scripts` documentation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [@bazo/js-dev-scripts](https://github.com/bazo/js-dev-scripts).
 
 ## Available Scripts
 
@@ -56,7 +56,6 @@ You will also see any lint errors in the console.
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
@@ -65,5 +64,3 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
