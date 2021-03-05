@@ -8,8 +8,8 @@ declare interface Employee {
 	name: string;
 	age: number;
 	departmentId: number;
-	startDate: Date;
-	endDate: Date | null;
+	startDate: string;
+	endDate: string | null;
 }
 
 declare interface DepartmentsByID {

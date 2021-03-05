@@ -1,15 +1,17 @@
 import "./App.css";
 
+import { HttpClient } from "@bazo/fetch-client";
 import DepartmentFilter from "components/DepartmentFilter";
 import EmployeeList from "components/EmployeeList";
 import Loader from "components/Loader";
-import { createHttp } from "libs/createHttp";
 import { filterEmployees, indexDepartmentsById } from "libs/utils";
 import React, { FC, useEffect, useState } from "react";
 
-const http = createHttp("http://localhost:3001");
+interface AppProps {
+	http: HttpClient;
+}
 
-const App: FC = () => {
+const App: FC<AppProps> = ({ http }) => {
 	const [departments, setDepartments] = useState<Department[]>([]);
 	const [departmentsById, setDepartmentsById] = useState<DepartmentsByID>([]);
 
@@ -18,13 +20,16 @@ const App: FC = () => {
 	const [selectedDepartment, selectDepartment] = useState(0);
 	const [isLoading, setIsLoading] = useState(true);
 
+	const loadData = async (): Promise<void> => {
+		const [departments, employees] = await Promise.all([http.get<Department[]>("/departments"), http.get<Employee[]>("/employees")]);
+		setDepartments(departments);
+		setDepartmentsById(indexDepartmentsById(departments));
+		setEmployees(employees);
+		setIsLoading(false);
+	};
+
 	useEffect(() => {
-		Promise.all([http.get<Department[]>("/departments"), http.get<Employee[]>("/employees")]).then(([departments, employees]) => {
-			setDepartments(departments);
-			setDepartmentsById(indexDepartmentsById(departments));
-			setEmployees(employees);
-			setIsLoading(false);
-		});
+		loadData();
 	}, []);
 
 	const onDepartmentChange = (departmentId: number): void => {
