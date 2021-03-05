@@ -2,6 +2,7 @@ import "./App.css";
 
 import DepartmentFilter from "components/DepartmentFilter";
 import EmployeeList from "components/EmployeeList";
+import Loader from "components/Loader";
 import { createHttp } from "libs/createHttp";
 import { filterEmployees, indexDepartmentsById } from "libs/utils";
 import React, { FC, useEffect, useState } from "react";
@@ -12,29 +13,19 @@ const App: FC = () => {
 	const [departments, setDepartments] = useState<Department[]>([]);
 	const [departmentsById, setDepartmentsById] = useState<DepartmentsByID>([]);
 
-	const [allEmployees, setAllEmployees] = useState<Employee[]>([]);
-	const [displayedEmployees, setDisplayedEmployees] = useState<Employee[]>([]);
+	const [employees, setEmployees] = useState<Employee[]>([]);
 
 	const [selectedDepartment, selectDepartment] = useState(0);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		http.get<Department[]>("/departments").then((departments) => {
+		Promise.all([http.get<Department[]>("/departments"), http.get<Employee[]>("/employees")]).then(([departments, employees]) => {
 			setDepartments(departments);
 			setDepartmentsById(indexDepartmentsById(departments));
-		});
-		http.get<Employee[]>("/employees").then((employees) => {
-			setAllEmployees(employees);
-			setDisplayedEmployees(employees);
+			setEmployees(employees);
+			setIsLoading(false);
 		});
 	}, []);
-
-	useEffect(() => {
-		if (selectedDepartment === 0) {
-			setDisplayedEmployees(allEmployees);
-			return;
-		}
-		setDisplayedEmployees(filterEmployees(allEmployees, selectedDepartment));
-	}, [selectedDepartment]);
 
 	const onDepartmentChange = (departmentId: number): void => {
 		selectDepartment(departmentId);
@@ -46,8 +37,14 @@ const App: FC = () => {
 				<h1>Employee list</h1>
 			</header>
 			<div className="Content">
-				<DepartmentFilter departments={departments} onChange={onDepartmentChange} />
-				<EmployeeList employees={displayedEmployees} departmentsById={departmentsById} />
+				{isLoading ? (
+					<Loader />
+				) : (
+					<>
+						<DepartmentFilter departments={departments} onChange={onDepartmentChange} />
+						<EmployeeList employees={filterEmployees(employees, selectedDepartment)} departmentsById={departmentsById} />
+					</>
+				)}
 			</div>
 		</div>
 	);
