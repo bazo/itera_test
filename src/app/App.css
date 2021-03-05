@@ -1,5 +1,6 @@
 .App {
 	text-align: center;
+	position: relative;
 }
 
 .App-header {
@@ -38,6 +39,11 @@
 .Employee-List table {
 	width: 90vw;
 }
+
+.Employee-List table tr {
+	cursor: pointer;
+}
+
 .Employee-List table thead {
 	background-color: lightgray;
 }

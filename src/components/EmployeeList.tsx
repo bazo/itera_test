@@ -3,9 +3,10 @@ import React, { FC } from "react";
 interface EmployeeListProps {
 	employees: Employee[];
 	departmentsById: DepartmentsByID;
+	onRowClick: (id: number) => void;
 }
 
-const EmployeeList: FC<EmployeeListProps> = ({ employees, departmentsById }) => {
+const EmployeeList: FC<EmployeeListProps> = ({ employees, departmentsById, onRowClick }) => {
 	return (
 		<div className="Employee-List">
 			<table>
@@ -19,7 +20,7 @@ const EmployeeList: FC<EmployeeListProps> = ({ employees, departmentsById }) => 
 				<tbody>
 					{employees.map(({ id, name, departmentId }) => {
 						return (
-							<tr key={id}>
+							<tr key={id} onClick={onRowClick.bind(null, id)}>
 								<td>{id}</td>
 								<td>{name}</td>
 								<td>{departmentsById[departmentId].departmentName}</td>
