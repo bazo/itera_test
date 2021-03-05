@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"start": "env-cmd -f .env.local dev-scripts start",
+		"start": "dev-scripts start",
 		"build": "dev-scripts build",
 		"serve": "serve build",
 		"test": "jest --watch",
@@ -23,9 +23,9 @@
 	"dependencies": {
 		"@bazo/fetch-client": "^1.0.0",
 		"@bazo/js-dev-scripts": "^0.0.30",
+		"@testing-library/dom": "^7.29.6",
 		"@types/jest": "^26.0.20",
 		"date-fns": "^2.19.0",
-		"env-cmd": "^10.1.0",
 		"jest": "^26.6.3",
 		"ramda": "^0.27.1",
 		"react": "^17.0.1",
