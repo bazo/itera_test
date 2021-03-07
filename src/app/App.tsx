@@ -7,12 +7,15 @@ import EmployeeModal from "components/EmployeeModal";
 import Loader from "components/Loader";
 import { filterEmployees, indexDepartmentsById } from "libs/utils";
 import React, { FC, useEffect, useState } from "react";
+import { useErrorHandler } from "react-error-boundary";
 
 interface AppProps {
 	http: HttpClient;
 }
 
 const App: FC<AppProps> = ({ http }) => {
+	const handleError = useErrorHandler();
+
 	const [departments, setDepartments] = useState<Department[]>([]);
 	const [departmentsById, setDepartmentsById] = useState<DepartmentsByID>([]);
 
@@ -38,12 +41,12 @@ const App: FC<AppProps> = ({ http }) => {
 	};
 
 	useEffect(() => {
-		loadData();
+		loadData().catch(handleError);
 	}, []);
 
 	useEffect(() => {
 		if (selectedEmployeeId) {
-			loadEmployee(selectedEmployeeId);
+			loadEmployee(selectedEmployeeId).catch(handleError);
 		}
 	}, [selectedEmployeeId]);
 

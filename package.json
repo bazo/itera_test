@@ -3,12 +3,13 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"start": "dev-scripts start",
+		"start-app": "dev-scripts start",
+		"start-json-server": "json-server --no-cors --port 3001 --watch db.json",
+		"start": "run-p start-json-server start-app",
 		"build": "dev-scripts build",
 		"serve": "serve build",
 		"test": "jest --watch",
-		"test-dev": "dev-scripts test",
-		"start-json-server": "json-server --no-cors --port 3001 --watch db.json"
+		"test-dev": "dev-scripts test"
 	},
 	"husky": {
 		"hooks": {
@@ -27,9 +28,11 @@
 		"@types/jest": "^26.0.20",
 		"date-fns": "^2.19.0",
 		"jest": "^26.6.3",
+		"npm-run-all": "^4.1.5",
 		"ramda": "^0.27.1",
 		"react": "^17.0.1",
 		"react-dom": "^17.0.1",
+		"react-error-boundary": "^3.1.1",
 		"spin.js": "^4.1.0",
 		"ts-jest": "^26.5.3",
 		"tsconfig-paths-jest": "^0.0.1",
@@ -39,7 +42,7 @@
 		"@testing-library/jest-dom": "^5.11.9",
 		"@testing-library/react": "^11.2.5",
 		"@testing-library/user-event": "^12.8.1",
-		"@types/node": "^14.14.31",
+		"@types/node": "^14.14.32",
 		"@types/ramda": "^0.27.38",
 		"@types/react": "^17.0.2",
 		"@types/react-dom": "^17.0.1",
@@ -49,7 +52,7 @@
 		"eslint": "^7.21.0",
 		"eslint-config-prettier": "^8.1.0",
 		"eslint-plugin-import": "^2.22.1",
-		"eslint-plugin-jest": "^24.1.5",
+		"eslint-plugin-jest": "^24.1.7",
 		"eslint-plugin-prettier": "^3.3.1",
 		"eslint-plugin-react": "^7.22.0",
 		"eslint-plugin-simple-import-sort": "^7.0.0",
